@@ -78,7 +78,7 @@ class ViewController: UIViewController {
                 self?.configureMap()
                 // Чтобы наблюдать за движением, установим камеру на только что добавленную точку
              //   self?.configureMap(coordinate: location.coordinate)
-                let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 17)
+                let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 15)
                 self?.mapView.animate(to: position)
             }
     }
@@ -142,20 +142,13 @@ class ViewController: UIViewController {
         let lastRoute = try! dataBase.getPathData()
         // Проверка, что координаты есть в памяти.
         guard !lastRoute.isEmpty else { return }
-        // Заменяем старую линию новой.
-        route = GMSPolyline()
-        // Заменяем старый путь новым, пока пустым (без точек).
-        routePath = GMSMutablePath()
-        // Добавляем новую линию на карту.
-        route?.map = mapView
-        // Цвет и ширина линии маршрута.
-        route?.strokeWidth = 5
-        route?.strokeColor = .systemRed
+        addLine()
         // Создание линии маршрута путём перебора всех координат.
         for coordinates in lastRoute {
             routePath?.add(CLLocationCoordinate2D(latitude: coordinates.latitude, longitude: coordinates.longitude))
             route?.path = routePath
         }
+        
         // Первая точка маршрута.
         let firstCoordinates = CLLocationCoordinate2D(latitude: lastRoute.first!.latitude, longitude: lastRoute.first!.longitude)
         // Последняя точка маршрута.
@@ -163,17 +156,13 @@ class ViewController: UIViewController {
         // Определение границ маршрута.
         let bounds = GMSCoordinateBounds(coordinate: firstCoordinates, coordinate: lastCoordinates)
         // Установка камеры относительно поределённых границ.
-        let camera = mapView.camera(for: bounds, insets: UIEdgeInsets())!
-        mapView.camera = camera
+        let update = GMSCameraUpdate.fit(bounds, withPadding: 50.0)
+        mapView.moveCamera(update)
         // Немного отодвинуть камеру, чтобы был зазор между краями экрана и крайними точками линии маршрута.
         mapView.moveCamera(GMSCameraUpdate.zoomOut())
-     //   let update = GMSCameraUpdate.fit(bounds, withPadding: 50.0)
-     //   mapView.moveCamera(update)
-        
-        
     }
 }
-
+/*
 extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Берём последнюю точку из полученного набора
@@ -196,4 +185,4 @@ extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
-}
+}*/
