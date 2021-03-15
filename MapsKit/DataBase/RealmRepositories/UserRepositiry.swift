@@ -11,16 +11,17 @@ import RealmSwift
 class UserRepository {
     var realmUsers = [User]()
     // метод сохранения пользователя в Realm:
-    func saveUserData(login: String, password: String){
+    func saveUserData(login: String, password: String, avatar: String){
         do {
             let config = Realm.Configuration(deleteRealmIfMigrationNeeded:false)
             let realm = try Realm(configuration: config)
             var userToAdd = [User]()
             realm.beginWrite()
-           // realm.deleteAll()
+            //realm.deleteAll()
             let realmUser = User()
                 realmUser.login = login
                 realmUser.password = password
+                realmUser.avatar = avatar
                 userToAdd.append(realmUser)
             realm.add(userToAdd, update: .modified)
             try realm.commitWrite()
