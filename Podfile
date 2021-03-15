@@ -8,6 +8,7 @@ target 'MapsKit' do
   pod 'RealmSwift'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'Kingfisher'
   
  
   # Pods for MapsKit

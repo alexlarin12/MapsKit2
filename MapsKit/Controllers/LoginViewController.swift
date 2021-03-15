@@ -107,6 +107,11 @@ class LoginViewController: UIViewController {
                 loginButton?.isEnabled = inputFilled
             }
     }
-    
+    // передаем логин в MainViewController:
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "toMain" else {return}
+        let destination = segue.destination as? MainViewController
+        destination?.login = loginTextField.text ?? ""
+    }
 }
 

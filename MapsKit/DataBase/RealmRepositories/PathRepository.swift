@@ -24,7 +24,7 @@ class PathRepository{
             
             // Начинаем изменять хранилище.
             realm.beginWrite()
-            // realm.deleteAll()
+            //realm.deleteAll()
             let routePath = routePath 
             // Цикл по всем точкам (координатам) маршрута.
             for i in 0..<routePath.count() {

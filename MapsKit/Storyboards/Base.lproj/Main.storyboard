@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lLA-mJ-SLn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FBY-UG-79d">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -9,22 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="O4U-4A-me4">
-            <objects>
-                <navigationController id="lLA-mJ-SLn" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cNs-Dj-uWP">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="FBY-UG-79d" kind="relationship" relationship="rootViewController" id="Slb-4r-ff5"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="u5D-Ux-DJ5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1657" y="94"/>
-        </scene>
         <!--Launch-->
         <scene sceneID="St0-v0-v7x">
             <objects>
@@ -42,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQe-SB-spf">
-                                <rect key="frame" x="107" y="208" width="200" height="30"/>
+                                <rect key="frame" x="107" y="164" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="1ZC-YC-AjX"/>
                                 </constraints>
@@ -52,12 +36,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ogb-kZ-OYD">
-                                <rect key="frame" x="107" y="263" width="200" height="30"/>
+                                <rect key="frame" x="107" y="219" width="200" height="30"/>
                                 <state key="normal" title="Выйти"/>
                                 <connections>
                                     <action selector="logout:" destination="FBY-UG-79d" eventType="touchUpInside" id="RJO-TL-KlS"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NHs-Bm-2Ub">
+                                <rect key="frame" x="107" y="299" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="W3Q-Bd-3Ym"/>
+                                    <constraint firstAttribute="width" secondItem="NHs-Bm-2Ub" secondAttribute="height" multiplier="1:1" id="gt6-Jb-IrA"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="TpS-Bi-zG8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -65,12 +56,16 @@
                             <constraint firstItem="qQe-SB-spf" firstAttribute="centerX" secondItem="7Ag-RH-Q5u" secondAttribute="centerX" id="0I9-Re-L9r"/>
                             <constraint firstItem="qQe-SB-spf" firstAttribute="top" secondItem="TpS-Bi-zG8" secondAttribute="top" constant="120" id="E0U-pG-ekc"/>
                             <constraint firstItem="Ogb-kZ-OYD" firstAttribute="width" secondItem="qQe-SB-spf" secondAttribute="width" id="Hb7-jl-F3P"/>
+                            <constraint firstItem="NHs-Bm-2Ub" firstAttribute="centerX" secondItem="Ogb-kZ-OYD" secondAttribute="centerX" id="IYu-QY-Wzh"/>
                             <constraint firstItem="Ogb-kZ-OYD" firstAttribute="centerX" secondItem="qQe-SB-spf" secondAttribute="centerX" id="Qin-VZ-gip"/>
                             <constraint firstItem="Ogb-kZ-OYD" firstAttribute="top" secondItem="qQe-SB-spf" secondAttribute="bottom" constant="25" id="XF0-Sy-PUC"/>
+                            <constraint firstItem="NHs-Bm-2Ub" firstAttribute="top" secondItem="Ogb-kZ-OYD" secondAttribute="bottom" constant="50" id="cpt-gK-1ve"/>
+                            <constraint firstItem="TpS-Bi-zG8" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="NHs-Bm-2Ub" secondAttribute="bottom" constant="15" id="xTo-6i-yi9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gal-cD-1iB"/>
                     <connections>
+                        <outlet property="avatarImageView" destination="NHs-Bm-2Ub" id="hys-FI-EHI"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="toMap" id="Udv-nQ-J5g"/>
                         <segue destination="jpd-LL-uiC" kind="custom" identifier="toLaunch" customClass="RootSegue" customModule="MapsKit" customModuleProvider="target" id="a3M-pO-bOv"/>
                     </connections>
@@ -84,15 +79,15 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MapsKit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qSY-b6-Prg" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="S7y-4v-A6n">
-                                <rect key="frame" x="15" y="697" width="50" height="150"/>
+                                <rect key="frame" x="15" y="643" width="50" height="150"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DnJ-5h-blb">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>

@@ -12,7 +12,10 @@ import RxCocoa
 import RxSwift
 
 class ViewController: UIViewController {
-   
+    // Ячейка для хранения логина:
+    var login = ""
+    // Ячейка для хранения аватара:
+    var avatar = ""
     // Ячейка для хранения Маркера:
     var marker: GMSMarker?
    // var locationManager: CLLocationManager!
@@ -22,6 +25,8 @@ class ViewController: UIViewController {
     var routePath: GMSMutablePath?
     // Ячейка для хранения объекта БД:
     let dataBase = PathRepository()
+    let userBase = UserRepository()
+   
     /////////////////////////////////////
     var locationManager = LocationManager.instance
     
@@ -30,6 +35,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLocationManager()
+        getAvatar(login: login)
     }
    
     func configureMap() {
@@ -123,9 +129,24 @@ class ViewController: UIViewController {
         // ширина объекта пути:
         route?.strokeWidth = 7
     }
+    // метод получения аватара из БД:
+    func getAvatar(login: String) {
+        let user = try? userBase.searchUser(login: login)
+        user?.forEach{ user in
+            self.avatar = user.avatar
+        }
+    }
     // метод добавления маркера:
     func addMarker(position: CLLocationCoordinate2D) {
+     
         let marker = GMSMarker(position: position)
+        let avatarImageView = UIImageView(image: UIImage(named: "noimage"))
+        avatarImageView.kf.setImage(with: URL(fileURLWithPath: avatar))
+        avatarImageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
+        avatarImageView.clipsToBounds = true
+        marker.iconView = avatarImageView
+        
         marker.map = mapView
         self.marker = marker
         mapView.animate(toLocation: position)

@@ -177,8 +177,24 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7WG-eL-Jtf">
+                                <rect key="frame" x="87" y="406" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="7WG-eL-Jtf" secondAttribute="height" multiplier="1:1" id="URx-dm-0KB"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lo0-dh-UyL">
+                                <rect key="frame" x="107" y="351" width="200" height="30"/>
+                                <state key="normal" title="Добавить аватар"/>
+                                <connections>
+                                    <action selector="addAvatar:" destination="T7B-bE-K1y" eventType="touchUpInside" id="GUw-IW-hEA"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGL-UT-jKx">
-                                <rect key="frame" x="107" y="421" width="200" height="30"/>
+                                <rect key="frame" x="107" y="671" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="ixJ-2V-3NG"/>
+                                </constraints>
                                 <state key="normal" title="Создать новый аккаунт"/>
                                 <connections>
                                     <action selector="createNewAccaunt:" destination="T7B-bE-K1y" eventType="touchUpInside" id="f26-N5-xoP"/>
@@ -188,18 +204,24 @@
                         <viewLayoutGuide key="safeArea" id="lD3-G3-q36"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="TGL-UT-jKx" firstAttribute="centerX" secondItem="7WG-eL-Jtf" secondAttribute="centerX" id="0gW-Jq-Fpp"/>
+                            <constraint firstItem="lo0-dh-UyL" firstAttribute="centerX" secondItem="V31-fh-atL" secondAttribute="centerX" id="3G9-z5-hNV"/>
                             <constraint firstItem="ApB-x4-ywA" firstAttribute="top" secondItem="lD3-G3-q36" secondAttribute="top" constant="120" id="Ayo-N9-Psq"/>
+                            <constraint firstItem="lo0-dh-UyL" firstAttribute="width" secondItem="V31-fh-atL" secondAttribute="width" id="E8A-Hr-sN8"/>
+                            <constraint firstItem="TGL-UT-jKx" firstAttribute="top" secondItem="7WG-eL-Jtf" secondAttribute="bottom" constant="25" id="UaG-oK-Yrs"/>
                             <constraint firstItem="V31-fh-atL" firstAttribute="centerX" secondItem="ApB-x4-ywA" secondAttribute="centerX" id="cmY-fT-UN2"/>
-                            <constraint firstItem="TGL-UT-jKx" firstAttribute="centerX" secondItem="V31-fh-atL" secondAttribute="centerX" id="gRO-fk-0iW"/>
-                            <constraint firstItem="TGL-UT-jKx" firstAttribute="top" secondItem="V31-fh-atL" secondAttribute="bottom" constant="120" id="lFG-wp-jxe"/>
+                            <constraint firstItem="7WG-eL-Jtf" firstAttribute="top" secondItem="lo0-dh-UyL" secondAttribute="bottom" constant="25" id="hY0-Tg-3tz"/>
                             <constraint firstItem="ApB-x4-ywA" firstAttribute="centerX" secondItem="QmX-Re-XmC" secondAttribute="centerX" id="nPd-XS-gP8"/>
-                            <constraint firstItem="TGL-UT-jKx" firstAttribute="width" secondItem="V31-fh-atL" secondAttribute="width" id="qL8-ei-Gdy"/>
+                            <constraint firstItem="7WG-eL-Jtf" firstAttribute="width" secondItem="lo0-dh-UyL" secondAttribute="width" multiplier="1.2" id="qj5-2b-Qbb"/>
                             <constraint firstItem="V31-fh-atL" firstAttribute="top" secondItem="ApB-x4-ywA" secondAttribute="bottom" constant="25" id="sS9-zE-2Ac"/>
                             <constraint firstItem="V31-fh-atL" firstAttribute="width" secondItem="ApB-x4-ywA" secondAttribute="width" id="tYr-jn-tUG"/>
+                            <constraint firstItem="7WG-eL-Jtf" firstAttribute="centerX" secondItem="lo0-dh-UyL" secondAttribute="centerX" id="v80-JZ-Tzm"/>
+                            <constraint firstItem="lo0-dh-UyL" firstAttribute="top" secondItem="V31-fh-atL" secondAttribute="bottom" constant="50" id="xG0-eJ-oR9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IfB-xJ-jY9"/>
                     <connections>
+                        <outlet property="avatarImageView" destination="7WG-eL-Jtf" id="GA2-Wf-GzL"/>
                         <outlet property="loginTextField" destination="ApB-x4-ywA" id="of8-8B-uXc"/>
                         <outlet property="passwordTextField" destination="V31-fh-atL" id="LtU-HD-Bgk"/>
                         <segue destination="8ef-6W-Tes" kind="presentation" identifier="toMain" customClass="RootSegue" customModule="MapsKit" customModuleProvider="target" id="eni-yq-efi"/>
@@ -211,7 +233,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="3IT-wJ-STr"/>
+        <segue reference="eni-yq-efi"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
